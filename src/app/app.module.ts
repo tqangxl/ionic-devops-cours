@@ -3,7 +3,7 @@
  * @Date:   08-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 08-04-2017
+ * @Last modified time: 09-04-2017
  */
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +16,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TodosService } from '../providers/todos-service/todos-service';
+
+import { EnvironmentsModule } from "./environment/environment.module";
 
 const pages:Array<any> = [
   MyApp,
@@ -33,7 +35,8 @@ const providers:Array<any> = [
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    EnvironmentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [...pages],

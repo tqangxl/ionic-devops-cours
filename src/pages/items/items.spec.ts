@@ -19,6 +19,9 @@
 
  import { IonicModule, NavController } from "ionic-angular";
  import { HttpModule } from '@angular/http';
+
+ import { EnvironmentsModule } from "../../app/environment/environment.module";
+
  import {} from 'jasmine';
 
  describe('ItemsPage', function () {
@@ -35,7 +38,8 @@
         ],
        imports: [
          IonicModule.forRoot(Items),
-         HttpModule
+         HttpModule,
+         EnvironmentsModule
        ],
        providers: [
          NavController,

@@ -6,20 +6,15 @@
  * @Last modified time: 09-04-2017
 */
 
-export const devVariables:any = {
-  environmentName: 'Development Environment',
-  serverEnvName: 'dev',
-  // Back-end
-  dbHost: 'mongodb://localhost:27017',
-  dbName: 'test'
-};
-
+import { devVariables } from '../environments/development';
+import { prodVariables } from '../environments/production';
+import { IEnvironment } from "../environments/env-model";
 
 declare const process: any; // Typescript compiler will complain without this
 
-export function environmentConfig():any {
+export function environmentConfig():IEnvironment {
   let env = devVariables;
-  // if(process.env.NODE_ENV === 'pre-prod'){env = prodVariables}
+  if(process.env.NODE_ENV === 'prod'){env = prodVariables}
   return env;
 }
 
