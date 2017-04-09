@@ -14,6 +14,9 @@
  import { DateFormatPipe } from "../../pipes/dateformat-pipe";
  import { TodosService } from '../../providers/todos-service/todos-service';
 
+ import { NotifMock } from "../../providers/notifications-service/notifications-mock";
+ import { LocalNotifications } from '@ionic-native/local-notifications';
+
  import { IonicModule, NavController } from "ionic-angular";
  import { HttpModule } from '@angular/http';
  import {} from 'jasmine';
@@ -36,7 +39,9 @@
        ],
        providers: [
          NavController,
-         TodosService
+         TodosService,
+         NotifMock,
+         LocalNotifications
        ]
      });
    }));

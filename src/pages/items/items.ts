@@ -14,6 +14,10 @@ import { Subscription } from 'rxjs/Subscription.js'
 
 import { TodosService, ITodo } from '../../providers/todos-service/todos-service';
 
+import { INotifItem } from "../../providers/notifications-service/notif-model";
+//import { LocalNotifications } from '@ionic-native/local-notifications';
+import { NotifMock } from '../../providers/notifications-service/notifications-mock';
+
 /**
  * Generated class for the Items page.
  *
@@ -30,11 +34,13 @@ import { TodosService, ITodo } from '../../providers/todos-service/todos-service
 export class Items {
 
   public todos:Observable<ITodo[]>;
-  private _timerSubscribe:Subscription
+  private _timerSubscribe:Subscription;
 
   constructor(
     public navCtrl: NavController,
-    public todoService: TodosService
+    public todoService: TodosService,
+    //public localNotifications: LocalNotifications
+    public notifMock: NotifMock
   ) {
     this.todos = this.todoService.todos; // subscribe to entire collection
     this.todoService.loadAll()
@@ -105,10 +111,20 @@ export class Items {
     todo.expire = true;
     // update todo data
     this.todoService.update(todo)
-    // TODO:
-    // disable alert and use Native Plugin
-    // with the custom provider localNotifications
-    // to have debug mode in browser
-    alert(`Expired: ${todo.description}`)
+    //alert(`Expired: ${todo.description}`)
+
+    // Schedule a single notification with native plugin
+    // will run notification on mobile or simple alert in browser
+    // Magic ;-)
+    const newDate = new Date();
+    newDate.setMinutes(newDate.getMinutes() + 1);
+    this.notifMock.schedule(<INotifItem>{
+    //this.localNotifications.schedule(<INotifItem>{
+      id: t,
+      text: todo.description,
+      //sound: isAndroid? 'file://sound.mp3': 'file://beep.caf',
+      data: { secret: todo._id },
+      at: newDate
+    });
   }
 }
