@@ -21,6 +21,7 @@ Package.json
 CLI
 - `$ git checkout master`
 - `$ heroku create`
+- check with `$ git remote -v`
 - optional: `$ git checkout <WORKING_BRANCH>`
 - `$ git subtree push --prefix dist heroku master` or `git subtree push --prefix dist heroku <YOUR_BRANCH>:master`
 - `$ heroku ps:scale web=1`
@@ -32,8 +33,8 @@ Web
 and more details on  [https://devcenter.heroku.com/articles/getting-started-with-nodejs](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction)
 - follow each points
 
-APP providers
-- Change url endPoints by the herokuapp server
+Environments/production.ts
+- change url endPoints by the herokuapp server
 
 ## About author
 Hi, i'm a Front-end developper living in Geneva Switzerland and i build hybrid mobile & web applications for almost 15 years. You can follow me on Twitter @FazioNico or checkout my own website http://nicolasfazio.ch
