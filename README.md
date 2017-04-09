@@ -11,30 +11,13 @@
 # Ionic DevOps - Cours
 Ionic MEAN Stack DevOps cours for [Nomades Advenced Technologie](http://nomades.ch).
 
-### Step 05 | Configure app & clean code & update test
-In this step we'll config app files and update all test to have build pass true
 
-<b>app.module</b>
-- add
-```
-const ionicAppConfig:Object = {
-  tabsPlacement: 'top',
-  mode: 'md'
-};
-```
-- update `IonicModule.forRoot(MyApp),` with `IonicModule.forRoot(MyApp, ionicAppConfig),`
+### Step 06 | Deploy BDD on MongoLab
+In this step we'll deploy BDD with MongoLab.
 
-<b>manifest.json</b>
-- update datas
-
-<b>ionic.config.json</b>
-- update datas
-
-<b>config.xml</b>
-- update datas
-
-<b>./src/index.html</b>
-- update datas
+- refere to this official tutorial: [http://docs.mlab.com/](http://docs.mlab.com/)
+- update value of `dbHost;dbName` into `./environments/production.ts` file.
+- run `$ npm run start:prod`
 
 ## About author
 Hi, i'm a Front-end developper living in Geneva Switzerland and i build hybrid mobile & web applications for almost 15 years. You can follow me on Twitter @FazioNico or checkout my own website http://nicolasfazio.ch

@@ -16,6 +16,6 @@
    apiEndpoint: 'http://localhost:8080',
 
    // Back-end
-   dbHost: 'mongodb://localhost:27017',
-   dbName: 'test'
+   dbHost: 'mongodb://ionic_devops:porrVnMKN8FO@ds145230.mlab.com:45230',
+   dbName: 'ionic_devops'
  };
