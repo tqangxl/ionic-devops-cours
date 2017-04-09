@@ -4,6 +4,7 @@
   "homepage": "http://nicolasfazio.ch/",
   "private": true,
   "scripts": {
+    "start": "node ./server.js",
     "start:dev": "npm run mongod & npm run server:dev & ionic serve --dev",
     "start:prod": "npm run server & ionic serve --prod",
     "server": "tsc server.ts --outDir ./dist && NODE_ENV=prod node ./dist/server.js ",
