@@ -5,9 +5,8 @@
  * @Last modified by:   webmaster-fazio
  * @Last modified time: 09-04-2017
 */
-
-import { Server } from "./server/app";
-
-const NodeServer = new Server()
-NodeServer.bootstrap()
+"use strict";
+var app_1 = require("./server/app");
+var NodeServer = new app_1.Server();
+NodeServer.bootstrap();
 // ready
