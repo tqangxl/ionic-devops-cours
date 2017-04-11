@@ -15,10 +15,106 @@ Ionic MEAN Stack DevOps cours for [Nomades Advenced Technologie](http://nomades.
 ### Step 07 | Deploy Server on Heroku
 In this step we'll deploy server side on Heroku.
 
-Package.json
-- add script `"start": "node ./dist/server.js", `
+<b>Update ./package.json</b>
+- add script `"start": "NODE_ENV=prod node ./server.js", `
 
-CLI
+<b>./server/package.json</b>
+- create NEW file `./server/package.json` for run server with the followign code
+```
+{
+  "name": "ionic-devops-cours",
+  "author": "Nicolas Fazio",
+  "homepage": "http://nicolasfazio.ch/",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=prod node ./server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.3.0",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.1",
+    "morgan": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.16.1",
+    "@types/cors": "^2.8.1",
+    "@types/express": "^4.0.35",
+    "@types/mongodb": "^2.1.41",
+    "@types/mongoose": "^4.7.9",
+    "@types/node": "^7.0.12",
+    "mongoose": "^4.9.1",
+    "nodemon": "^1.11.0",
+    "typescript": "~2.2.1"
+  },
+  "engines": {
+    "node": "~7.0.0"
+  },
+  "version": "0.0.5",
+  "description": "ionic-devops-server: JS Server side Ionic cours"
+}
+```
+
+<b>Git</b>
+- remove `./dist` ignored folder from `.gitignore`
+- `$ git add .` & `$ git commit -m 'add ./dist folder with server ready'`
+
+<b>./server/.gitignore</b>
+- create NEW file `./server/gitignore` for ignore server files with the followign code
+ ```
+ # Specifies intentionally untracked files to ignore when using Git
+ # http://git-scm.com/docs/gitignore
+
+ *~
+ *.sw[mnpcod]
+ *.log
+ *.tmp
+ *.tmp.*
+ log.txt
+ *.sublime-project
+ *.sublime-workspace
+ .vscode/
+ npm-debug.log*
+
+ .idea/
+ .sass-cache/
+ .tmp/
+ .versions/
+ coverage/
+ # dist/
+ node_modules/
+ tmp/
+ temp/
+ hooks/
+ platforms/
+ plugins/
+ plugins/android.json
+ plugins/ios.json
+ www/
+ $RECYCLE.BIN/
+
+ .DS_Store
+ Thumbs.db
+ UserInterfaceState.xcuserstate
+
+ # Ignore deploy Browser version
+ .publish/
+ ```
+ 
+ <b>Git</b>
+ - `$ git add .` & `$ git commit -m 'add server ignore files'`
+
+
+<b>CLI<b>
+- run `tsc server.ts --outDir ./dist && cp ./server/package.json ./dist/package.json && cp ./server/.gitignore ./dist/.gitignore` to build server
+- `$ git branch -D heroku-serve`
+- `$ git subtree split -P dist -b heroku-serve`
+- `$ git push heroku heroku-serve:master --force`
+
+
 - `$ git checkout master`
 - `$ heroku create`
 - check with `$ git remote -v`
