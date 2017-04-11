@@ -17,7 +17,7 @@ npm-debug.log*
 .tmp/
 .versions/
 coverage/
-# dist/
+dist/
 node_modules/
 tmp/
 temp/
@@ -42,8 +42,8 @@ UserInterfaceState.xcuserstate
 
 # Added files & folders
 # *.js
-*-config.*
+# *-config.*
 # config.*
 
 environments/##/#.js
-production.#
+# production.#
