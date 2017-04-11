@@ -20,6 +20,7 @@ In this step we'll deploy server side on Heroku.
 
 <b>./server/package.json</b>
 - create NEW file `./server/package.json` for run server with the followign code
+
 ```
 {
   "name": "ionic-devops-cours",
@@ -53,7 +54,7 @@ In this step we'll deploy server side on Heroku.
   "engines": {
     "node": "~7.0.0"
   },
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "ionic-devops-server: JS Server side Ionic cours"
 }
 ```
@@ -64,6 +65,8 @@ In this step we'll deploy server side on Heroku.
 
 <b>./server/.gitignore</b>
 - create NEW file `./server/gitignore` for ignore server files with the followign code
+
+
  ```
  # Specifies intentionally untracked files to ignore when using Git
  # http://git-scm.com/docs/gitignore
@@ -103,33 +106,35 @@ In this step we'll deploy server side on Heroku.
  # Ignore deploy Browser version
  .publish/
  ```
- 
+
  <b>Git</b>
  - `$ git add .` & `$ git commit -m 'add server ignore files'`
 
+ <b>Web</b>
+ - create your own heroku account
+ - follow required point from the user get started doc for NodeJS
+ [https://devcenter.heroku.com/articles/git](https://devcenter.heroku.com/articles/git)
+ and [https://devcenter.heroku.com/articles/getting-started-with-nodejs](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction) to have more details on how to use Heroku with NodeJS & Git.
 
 <b>CLI<b>
-- run `tsc server.ts --outDir ./dist && cp ./server/package.json ./dist/package.json && cp ./server/.gitignore ./dist/.gitignore` to build server
-- `$ git branch -D heroku-serve`
-- `$ git subtree split -P dist -b heroku-serve`
-- `$ git push heroku heroku-serve:master --force`
-
-
 - `$ git checkout master`
 - `$ heroku create`
 - check with `$ git remote -v`
 - optional: `$ git checkout <WORKING_BRANCH>`
-- `$ git subtree push --prefix dist heroku master` or `git subtree push --prefix dist heroku <YOUR_BRANCH>:master`
-- `$ heroku ps:scale web=1`
-- `$ heroku open`
 
-Web
-- go on
-[https://devcenter.heroku.com/articles/git](https://devcenter.heroku.com/articles/git)
-and more details on  [https://devcenter.heroku.com/articles/getting-started-with-nodejs](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction)
-- follow each points
+- run the following command
 
-Environments/production.ts
+```
+-
+
+tsc server.ts --outDir ./dist && cp ./server/package.json ./dist/package.json && cp ./server/.gitignore ./dist/.gitignore && git add --all && git commit -m 'upd version - `date`' && git branch -D heroku-serve && git subtree split -P dist -b heroku-serve && git push heroku heroku-serve:master --force && heroku ps:scale web=1 && heroku open
+
+-
+```
+- to have a better usage, simply add it to a run script like `"deploy:server": "...previouse bash code..."`
+
+
+<b>./environments/production.ts<b/>
 - change url endPoints by the herokuapp server
 
 ## About author
