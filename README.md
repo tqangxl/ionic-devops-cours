@@ -12,130 +12,60 @@
 Ionic MEAN Stack DevOps cours for [Nomades Advenced Technologie](http://nomades.ch).
 
 
-### Step 07 | Deploy Server on Heroku
-In this step we'll deploy server side on Heroku.
+### Step 08 | Deploy Front-end PWA on Github
+In this step we'll deploy client Front app Browser version in Github Pages
 
-<b>Update ./package.json</b>
-- add script `"start": "NODE_ENV=prod node ./server.js", `
+<b>CLI</b>
+- `$ ionic platform add browser`
+- `$ ionic build browser`
 
-<b>./server/package.json</b>
-- create NEW file `./server/package.json` for run server with the followign code
+<b>At this step we'have tree possible way</b>
+#### 1. Build pass True and result work in Prod & in Dev
+- YOUR_DEPLOY_PATH is `./platforms/browser/www`
 
-```
-{
-  "name": "ionic-devops-cours",
-  "author": "Nicolas Fazio",
-  "homepage": "http://nicolasfazio.ch/",
-  "private": true,
-  "scripts": {
-    "start": "NODE_ENV=prod node ./server.js"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.17.1",
-    "cors": "^2.8.1",
-    "express": "^4.15.2",
-    "jsonwebtoken": "^7.3.0",
-    "mongodb": "^2.2.25",
-    "mongoose": "^4.9.1",
-    "morgan": "^1.8.1"
-  },
-  "devDependencies": {
-    "@types/body-parser": "^1.16.1",
-    "@types/cors": "^2.8.1",
-    "@types/express": "^4.0.35",
-    "@types/mongodb": "^2.1.41",
-    "@types/mongoose": "^4.7.9",
-    "@types/node": "^7.0.12",
-    "mongoose": "^4.9.1",
-    "nodemon": "^1.11.0",
-    "typescript": "~2.2.1"
-  },
-  "engines": {
-    "node": "~7.0.0"
-  },
-  "version": "0.1.0",
-  "description": "ionic-devops-server: JS Server side Ionic cours"
-}
-```
-
-<b>Git</b>
-- remove `./dist` ignored folder from `.gitignore`
-- `$ git add .` & `$ git commit -m 'add ./dist folder with server ready'`
-
-<b>./server/.gitignore</b>
-- create NEW file `./server/gitignore` for ignore server files with the followign code
+#### 2. Build pass True and result NOT work in Prod but WORK in Dev
+- open projet in browser and open console...
+- see wath you can track and fix error one by one..
+  - try build one more time...
+- if error is type of `ERROR Error: No provider for t!...` maybe you can't fix bug... so we have to build app in Angular Dev Mode but with Prod environments variable.
+- We have to use the folder `./www` to deploy our application.
+- run `$ npm run start:prod` to build `./www` folder in dev mode but with prod environments variable.
+- YOUR_DEPLOY_PATH is `./www`
 
 
- ```
- # Specifies intentionally untracked files to ignore when using Git
- # http://git-scm.com/docs/gitignore
+#### 3. Build pass False and result NOT work in prod but WORK in Dev
+- track cli error and fix it one by one.
+- Good luck.
+- try build one more time...
 
- *~
- *.sw[mnpcod]
- *.log
- *.tmp
- *.tmp.*
- log.txt
- *.sublime-project
- *.sublime-workspace
- .vscode/
- npm-debug.log*
+#### Final step
+<b>CLI</b>
+- `$ npm install -g gulp`
+- `$ npm install --save-dev gulp gulp-gh-pages`
 
- .idea/
- .sass-cache/
- .tmp/
- .versions/
- coverage/
- # dist/
- node_modules/
- tmp/
- temp/
- hooks/
- platforms/
- plugins/
- plugins/android.json
- plugins/ios.json
- www/
- $RECYCLE.BIN/
+<b>.gitignore</b>
+- a folder `.publish/`
 
- .DS_Store
- Thumbs.db
- UserInterfaceState.xcuserstate
 
- # Ignore deploy Browser version
- .publish/
- ```
-
- <b>Git</b>
- - `$ git add .` & `$ git commit -m 'add server ignore files'`
-
- <b>Web</b>
- - create your own heroku account
- - follow required point from the user get started doc for NodeJS
- [https://devcenter.heroku.com/articles/git](https://devcenter.heroku.com/articles/git)
- and [https://devcenter.heroku.com/articles/getting-started-with-nodejs](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction) to have more details on how to use Heroku with NodeJS & Git.
-
-<b>CLI<b>
-- `$ git checkout master`
-- `$ heroku create`
-- check with `$ git remote -v`
-- optional: `$ git checkout <WORKING_BRANCH>`
-
-- run the following command
+<b>Root Folder</b>
+- create `./gulpfile.js` with the following code:
 
 ```
--
+var gulp = require('gulp');
+var ghPages = require('gulp-gh-pages');
 
-tsc server.ts --outDir ./dist && cp ./server/package.json ./dist/package.json && cp ./server/.gitignore ./dist/.gitignore && git add --all && git commit -m 'upd version - `date`' && git branch -D heroku-serve && git subtree split -P dist -b heroku-serve && git push heroku heroku-serve:master --force && heroku ps:scale web=1 && heroku open
+var path = YOUR_DEPLOY_PATH;
 
--
+gulp.task('deploy', function() {
+  return gulp.src(path+'/**/*')
+    .pipe(ghPages());
+});
 ```
-- to have a better usage, simply add it to a run script like `"deploy:server": "...previouse bash code..."`
 
+<b>CLI</b>
+- run `$ gulp deploy`
+- go on your gh-page like: https://GIT_HUB_USER_NAME.github.io/REPOSITORY_NAME/
 
-<b>./environments/production.ts<b/>
-- change url endPoints by the herokuapp server
 
 ## About author
 Hi, i'm a Front-end developper living in Geneva Switzerland and i build hybrid mobile & web applications for almost 15 years. You can follow me on Twitter @FazioNico or checkout my own website http://nicolasfazio.ch
