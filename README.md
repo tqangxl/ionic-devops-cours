@@ -66,7 +66,7 @@ gulp.task('deploy', function() {
 - add script `"deploy:client": "gulp deploy",`
 
 <b>CLI</b>
-- run `$ npm deploy:client`
+- run `$ npm run deploy:client`
 - go on your gh-page like: https://GIT_HUB_USER_NAME.github.io/REPOSITORY_NAME/
 
 
