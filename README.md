@@ -12,26 +12,23 @@
 Ionic MEAN Stack DevOps cours for [Nomades Advenced Technologie](http://nomades.ch).
 
 
-### Step 08 | Deploy Front-end PWA on Github
-In this step we'll deploy client Front app Browser version in Github Pages
+### Step 09 | Deploy Front-end to test in device
+In this step we'll all see how to deploy IOS version
 
 <b>CLI</b>
-- `$ ionic platform add browser`
-- `$ ionic build browser`
+- `$ ionic platform add ios`
+- `$ ionic build ios`
 
 <b>At this step we'have tree possible way</b>
 #### 1. Build pass True and result work in Prod & in Dev
-- YOUR_DEPLOY_PATH is `./platforms/browser/www`
+- YOUR_DEPLOY_PATH is `./platforms/ios`
 
 #### 2. Build pass True and result NOT work in Prod but WORK in Dev
 - open projet in browser and open console...
 - see wath you can track and fix error one by one..
   - try build one more time...
-- if error is type of `ERROR Error: No provider for t!...` maybe you can't fix bug... so we have to build app in Angular Dev Mode but with Prod environments variable.
-- We have to use the folder `./www` to deploy our application.
-- run `$ npm run start:prod` to build `./www` folder in dev mode but with prod environments variable.
-- YOUR_DEPLOY_PATH is `./www`
-
+- if error is type of `ERROR Error: No provider for t!...` maybe you can't fix bug... so we have to build app in Angular Dev Mode but with Prod environments variable.- we have to build app without `--prod` but pass `NODE_ENV`variable to catch Production environments variable.
+- YOUR_DEPLOY_PATH is `./platforms/ios`
 
 #### 3. Build pass False and result NOT work in prod but WORK in Dev
 - track cli error and fix it one by one.
@@ -39,35 +36,11 @@ In this step we'll deploy client Front app Browser version in Github Pages
 - try build one more time...
 
 #### Final step
-<b>CLI</b>
-- `$ npm install -g gulp`
-- `$ npm install --save-dev gulp gulp-gh-pages`
-
-<b>.gitignore</b>
-- a folder `.publish/`
-
-
-<b>Root Folder</b>
-- create `./gulpfile.js` with the following code:
-
-```
-var gulp = require('gulp');
-var ghPages = require('gulp-gh-pages');
-
-var path = YOUR_DEPLOY_PATH;
-
-gulp.task('deploy', function() {
-  return gulp.src(path+'/**/*')
-    .pipe(ghPages());
-});
-```
-
-<b>./package.json</b>
-- add script `"deploy:client": "gulp deploy",`
-
-<b>CLI</b>
-- run `$ npm run deploy:client`
-- go on your gh-page like: https://GIT_HUB_USER_NAME.github.io/REPOSITORY_NAME/
+<b>IOS</b>
+- enable devlopper option in mobile
+- open project into xCode
+- deploy app on your device.
+- test with safari dev tools.
 
 
 ## About author
