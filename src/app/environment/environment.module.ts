@@ -17,7 +17,7 @@
 
  export function environmentFactory():IEnvironment {
    let env:IEnvironment = process.env.IONIC_ENV === 'prod' ? prodVariables : devVariables;
-   if(process.env.NODE_ENV === 'prod') { prodVariables }  
+   if(process.env.NODE_ENV === 'prod') { env = prodVariables }  
    // if(process.env.IONIC_ENV != 'prod') console.log('env->', env);
    console.log('current env->', env)
    return env
