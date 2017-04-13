@@ -31,6 +31,7 @@ In this step we'll deploy client Front app Browser version in Github Pages
 - We have to use the folder `./www` to deploy our application.
 - run `$ npm run start:prod` to build `./www` folder in dev mode but with prod environments variable.
 - YOUR_DEPLOY_PATH is `./www`
+(other solution: pass NODE_ENV to client with ` config.plugins.push(new webpack.EnvironmentPlugin(['IONIC_ENV', 'NODE_ENV']))`)
 
 
 #### 3. Build pass False and result NOT work in prod but WORK in Dev
