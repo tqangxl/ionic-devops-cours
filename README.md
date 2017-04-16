@@ -12,35 +12,14 @@
 Ionic MEAN Stack DevOps cours for [Nomades Advenced Technologie](http://nomades.ch).
 
 
-### Step 09 | Deploy Front-end to test in device
-In this step we'll all see how to deploy IOS version
+### Step 10 | Publish IOS
+In this step we'll all see how to publish IOS version
 
-<b>CLI</b>
-- `$ ionic platform add ios`
-- `$ ionic build ios`
+<b>Git</b>
+- referer to the official [GitFlow](http://nvie.com/posts/a-successful-git-branching-model/) to setup Release Tag
 
-<b>At this step we'have tree possible way</b>
-#### 1. Build pass True and result work in Prod & in Dev
-- YOUR_DEPLOY_PATH is `./platforms/ios`
-
-#### 2. Build pass True and result NOT work in Prod but WORK in Dev
-- open projet in browser and open console...
-- see wath you can track and fix error one by one..
-  - try build one more time...
-- if error is type of `ERROR Error: No provider for t!...` maybe you can't fix bug... so we have to build app in Angular Dev Mode but with Prod environments variable.- we have to build app without `--prod` but pass `NODE_ENV`variable to catch Production environments variable.
-- YOUR_DEPLOY_PATH is `./platforms/ios`
-
-#### 3. Build pass False and result NOT work in prod but WORK in Dev
-- track cli error and fix it one by one.
-- Good luck.
-- try build one more time...
-
-#### Final step
-<b>IOS</b>
-- enable devlopper option in mobile
-- open project into xCode
-- deploy app on your device.
-- test with safari dev tools.
+<b>To publish</b>
+- follow each point if this tutorial: [How to submit an app in AppleStore](https://www.raywenderlich.com/127936/submit-an-app-part-1)
 
 
 ## About author
